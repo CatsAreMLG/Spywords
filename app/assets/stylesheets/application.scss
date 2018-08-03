@@ -1,0 +1,178 @@
+@import 'normalize';
+
+ * {
+  font-family: 'Roboto', verdana, sans-serif;
+ }
+ div {
+   display: block;
+ }
+ body {
+   margin: 1em;
+ }
+ form {
+    display: block;
+    margin-top: 0em;
+}
+h1 {
+			  text-transform: uppercase;
+			  letter-spacing: 0.2em;
+			  text-align: center;
+			  font-family: "Courier New", monospace;
+			}
+button {
+    -webkit-appearance: button;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+}
+.cell {
+    width: 120px;
+    height: 80px;
+    line-height: 80px;
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+    text-align: center;
+    background: #E8E8E8;
+    float: left;
+}
+.red {
+  background: #D13030;
+  color: white;
+  cursor: default !important;
+}
+.blue {
+  background: #4183CC;
+  color: white;
+  cursor: default !important;
+}
+.black {
+  background: #000;
+  color: white;
+  cursor: default !important;
+}
+.neutral {
+  background: #EDE2CC;
+  cursor: default !important;
+}
+.hidden-word {
+  cursor: pointer;
+}
+#mode-toggle {
+    text-align: right;
+    margin: 2em 5px 2em 0;
+}
+#mode-toggle.player-selected button.player, #mode-toggle.codemaster-selected button.codemaster {
+    cursor: auto;
+    color: #999;
+}
+#mode-toggle button.player {
+    border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+    position: relative;
+    left: 5px;
+}
+#mode-toggle button.codemaster {
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+}
+#mode-toggle button {
+    padding: 5px;
+    border: 1px #DDD solid;
+    background: #EEE;
+    cursor: pointer;
+}
+#next-game-btn {
+    margin-left: 10px;
+}
+#title {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  letter-spacing: 5px;
+}
+#header {
+  padding: 1em;
+  margin-bottom: 1em;
+}
+#game {
+
+}
+#board {
+  height: 500px;
+}
+#share {
+  color: #888;
+  margin-bottom: 3em;
+  font-size: 0.8em;
+  padding-bottom: 2em;
+  border-bottom: 1px #EEE solid;
+  font-family: system, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Lucida Grande";
+}
+#status-line {
+    text-align: center;
+    margin-bottom: 1em;
+}
+#status-line #status {
+    display: inline-block;
+    font-weight: bold;
+}
+.red-status-text {
+    color: #D13030;
+}
+.blue-status-text {
+    color: #4183CC;
+}
+.status-text {
+  font-weight: 700;
+}
+#button-line {
+    margin-bottom: 1em;
+}
+#remaining {
+    float: left;
+}
+#remaining .red-remaining {
+    color: #D13030;
+}
+#remaining .blue-remaining {
+    color: #4183CC;
+}
+#end-turn-btn {
+    border: 1px #DDD solid;
+    border-radius: 5px;
+    padding: 5px;
+    float: right;
+    background: #EEE;
+    margin: 0 1em 0 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    align-items: flex-start;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    font: 400 13.3333px Arial;
+    text-rendering: auto;
+    -webkit-writing-mode: horizontal-tb !important;
+}
+.container {
+ width: 700px;
+ margin: 0 auto;
+}
+.clear {
+    clear: both;
+}

@@ -1,0 +1,57 @@
+<div class="container">
+  <div id="header">
+    <h1 id="title">SPYWORDS</h1>
+  </div>
+  <div id="game">
+    <div id="share">
+      Send this link to friends:
+    </div>
+    <div id="status-line">
+      <div id="status" class="red-status-text">
+        red's turn
+      </div>
+    </div>
+    <div id="button-line">
+      <div id="remaining">
+        <span class="red-remaining">9</span>&nbsp;–&nbsp;<span class="blue-remaining">8</span>
+      </div>
+      <button id="end-turn-btn">
+        End red's turn
+      </button>
+      <div class="clear">
+      </div>
+    </div>
+    <div id="board">
+      <% @cells.each_with_index do |cell, x| %>
+        <div class="cell hidden-word <%= @arr[x] %>">
+          <span class="word">
+            <%= cell.upcase %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <div id="mode-toggle">
+      <button class="player">Player</button>
+      <button class="codemaster">Spymaster</button>
+      <button id="next-game-btn">Next game</button>
+    </div>
+  </div>
+</div>
+<script>
+  $('body').on('click','.red-word',function(){
+   $(this).addClass('red');
+   $(this).removeClass('hidden-word');
+  });
+  $('body').on('click','.blue-word',function(){
+   $(this).addClass('blue');
+   $(this).removeClass('hidden-word');
+  });
+  $('body').on('click','.neutral-word',function(){
+   $(this).addClass('neutral');
+   $(this).removeClass('hidden-word');
+  });
+  $('body').on('click','.death-word',function(){
+   $(this).addClass('black');
+   $(this).removeClass('hidden-word');
+  });
+</script>

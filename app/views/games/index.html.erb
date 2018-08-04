@@ -4,7 +4,7 @@
   </div>
   <div id="game">
     <div id="share">
-      Send this link to friends:
+      Send this link to friends: <a href="<%= request.original_url %>"><%= request.original_url %></a>
     </div>
     <div id="status-line">
       <div id="status">
@@ -30,8 +30,8 @@
       <% end %>
     </div>
     <div id="mode-toggle">
-      <button class="player">Player</button>
-      <button class="codemaster">Spymaster</button>
+      <button id="player">Player</button>
+      <button id="codemaster">Spymaster</button>
       <button id="next-game-btn">Next game</button>
     </div>
   </div>
@@ -39,37 +39,132 @@
 <script>
   var red = <%= @red %>;
   var blue = <%= @blue %>;
-  if (red > blue) {
-    $('#left-remaining').addClass('red-remaining');
-    $('#right-remaining').addClass('blue-remaining');
-    $('#status').addClass('red-status-text');
-    $('#status').text("red's turn");
-  } else {
-    $('#left-remaining').addClass('blue-remaining');
-    $('#right-remaining').addClass('red-remaining');
-    $('#status').addClass('blue-status-text');
-    $('#status').text("blue's turn");
+  console.log(red.length);
+  console.log(blue.length);
+  console.log("------------");
+  var init = 0;
+  var redTurn = 0;
+  var blueTurn = 0;
+  var test = 0;
+  var player = 1;
+  var spymaster = 0;
+  function swap (x, y) {
+     x = x + y;
+     y = x - y;
+     x = x - y;
+     return [x, y];
   }
+  if (init == 0) {
+    if (red.length < blue.length) {
+      $('#left-remaining').addClass('blue-remaining');
+      $('#right-remaining').addClass('red-remaining');
+      $('#status').addClass('blue-status-text');
+      $('#status').text("blue's turn");
+      blueTurn = 1;
+      init ++;
+    } else if (red.length > blue.length) {
+      $('#left-remaining').addClass('red-remaining');
+      $('#right-remaining').addClass('blue-remaining');
+      $('#status').addClass('red-status-text');
+      $('#status').text("red's turn");
+      redTurn = 1;
+      init ++;
+    }
+  }
+  console.log(redTurn);
+  console.log(blueTurn);
+  console.log("------------");
   $('#red-remaining').text(red.length);
   $('#blue-remaining').text(blue.length);
   $('body').on('click','.red-word',function(){
-   $(this).addClass('red');
    $(this).removeClass('hidden-word');
    red.pop();
-   $('#red-remaining').text(red.length);
+   $('.red-remaining').text(red.length);
+   if (blueTurn == 1) {
+     $('#status').text("red's turn");
+     $('#status').addClass('red-status-text');
+     $('#status').removeClass('blue-status-text');
+     redTurn = 1;
+     blueTurn = 0;
+   }
   });
   $('body').on('click','.blue-word',function(){
-   $(this).addClass('blue');
    $(this).removeClass('hidden-word');
    blue.pop();
-   $('#blue-remaining').text(blue.length);
+   $('.blue-remaining').text(blue.length);
+   if (redTurn == 1) {
+     $('#status').text("blue's turn");
+     $('#status').addClass('blue-status-text');
+     $('#status').removeClass('red-status-text');
+     redTurn = 0;
+     blueTurn = 1;
+   }
   });
   $('body').on('click','.neutral-word',function(){
-   $(this).addClass('neutral');
    $(this).removeClass('hidden-word');
+   test = swap(redTurn,blueTurn);
+   if (test[0] == 1) {
+     $('#status').text("red's turn");
+     $('#status').addClass('red-status-text');
+     $('#status').removeClass('blue-status-text');
+     console.log("red");
+     redTurn = 1;
+     blueTurn = 0;
+   } else if (test[0] == 0) {
+     $('#status').text("blue's turn");
+     $('#status').addClass('blue-status-text');
+     $('#status').removeClass('red-status-text');
+     console.log("blue");
+     redTurn = 0;
+     blueTurn = 1;
+   }
+   console.log(test);
+  });
+  $('body').on('click','#end-turn-btn',function(){
+    test = swap(redTurn,blueTurn);
+    if (test[0] == 1) {
+      $('#status').text("red's turn");
+      $('#status').addClass('red-status-text');
+      $('#status').removeClass('blue-status-text');
+      console.log("red");
+      redTurn = 1;
+      blueTurn = 0;
+    } else if (test[0] == 0) {
+      $('#status').text("blue's turn");
+      $('#status').addClass('blue-status-text');
+      $('#status').removeClass('red-status-text');
+      console.log("blue");
+      redTurn = 0;
+      blueTurn = 1;
+    }
+    console.log(test);
+  });
+  $('body').on('click','#codemaster',function(){
+    player = 0;
+    codemaster = 1;
+    $('.cell').removeClass('hidden-word');
+  });
+  $('body').on('click','#player',function(){
+    player = 1;
+    codemaster = 0;
+    $('.cell').addClass('hidden-word');
   });
   $('body').on('click','.death-word',function(){
-   $(this).addClass('black');
-   $(this).removeClass('hidden-word');
+    $(this).removeClass('hidden-word');
+    if (redTurn == 1){
+      $('#status').text("blue wins!");
+      $('#status').addClass('blue-status-text');
+      $('#status').removeClass('red-status-text');
+      console.log(redTurn);
+      console.log(blueTurn);
+      console.log(init);
+    } else if (blueTurn == 1) {
+      $('#status').text("red wins!");
+      $('#status').addClass('red-status-text');
+      $('#status').removeClass('blue-status-text');
+      console.log(redTurn);
+      console.log(blueTurn);
+      console.log(init);
+    }
   });
 </script>

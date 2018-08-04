@@ -13,6 +13,9 @@
     display: block;
     margin-top: 0em;
 }
+a {
+  text-decoration: none;
+}
 h1 {
 			  text-transform: uppercase;
 			  letter-spacing: 0.2em;
@@ -24,13 +27,13 @@ button {
     align-items: flex-start;
     text-align: center;
     cursor: default;
-    color: buttontext;
-    background-color: buttonface;
+    color: black;
+    background-color: #E8E8E8;
     box-sizing: border-box;
     padding: 2px 6px 3px;
     border-width: 2px;
     border-style: outset;
-    border-color: buttonface;
+    border-color: #E8E8E8;
     border-image: initial;
 }
 .cell {
@@ -44,27 +47,29 @@ button {
     background: #E8E8E8;
     float: left;
 }
-.red {
+.red-word {
   background: #D13030;
   color: white;
-  cursor: default !important;
+  cursor: default;
 }
-.blue {
+.blue-word {
   background: #4183CC;
   color: white;
-  cursor: default !important;
+  cursor: default;
 }
-.black {
+.death-word {
   background: #000;
   color: white;
-  cursor: default !important;
+  cursor: default;
 }
-.neutral {
+.neutral-word {
   background: #EDE2CC;
-  cursor: default !important;
+  cursor: default;
 }
 .hidden-word {
   cursor: pointer;
+  color: black !important;
+  background: #E8E8E8 !important;
 }
 #mode-toggle {
     text-align: right;
@@ -74,14 +79,14 @@ button {
     cursor: auto;
     color: #999;
 }
-#mode-toggle button.player {
+#mode-toggle button#player {
     border-radius: 5px 0 0 5px;
     -moz-border-radius: 5px 0 0 5px;
     -webkit-border-radius: 5px 0 0 5px;
     position: relative;
-    left: 5px;
+    left: 7px;
 }
-#mode-toggle button.codemaster {
+#mode-toggle button#codemaster {
     border-left: none;
     border-radius: 0 5px 5px 0;
     -moz-border-radius: 0 5px 5px 0;

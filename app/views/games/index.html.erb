@@ -7,13 +7,12 @@
       Send this link to friends:
     </div>
     <div id="status-line">
-      <div id="status" class="red-status-text">
-        red's turn
+      <div id="status">
       </div>
     </div>
     <div id="button-line">
       <div id="remaining">
-        <span class="red-remaining">9</span>&nbsp;–&nbsp;<span class="blue-remaining">8</span>
+        <span id="left-remaining">9</span>&nbsp;–&nbsp;<span id="right-remaining">8</span>
       </div>
       <button id="end-turn-btn">
         End red's turn
@@ -38,13 +37,32 @@
   </div>
 </div>
 <script>
+  var red = <%= @red %>;
+  var blue = <%= @blue %>;
+  if (red > blue) {
+    $('#left-remaining').addClass('red-remaining');
+    $('#right-remaining').addClass('blue-remaining');
+    $('#status').addClass('red-status-text');
+    $('#status').text("red's turn");
+  } else {
+    $('#left-remaining').addClass('blue-remaining');
+    $('#right-remaining').addClass('red-remaining');
+    $('#status').addClass('blue-status-text');
+    $('#status').text("blue's turn");
+  }
+  $('#red-remaining').text(red.length);
+  $('#blue-remaining').text(blue.length);
   $('body').on('click','.red-word',function(){
    $(this).addClass('red');
    $(this).removeClass('hidden-word');
+   red.pop();
+   $('#red-remaining').text(red.length);
   });
   $('body').on('click','.blue-word',function(){
    $(this).addClass('blue');
    $(this).removeClass('hidden-word');
+   blue.pop();
+   $('#blue-remaining').text(blue.length);
   });
   $('body').on('click','.neutral-word',function(){
    $(this).addClass('neutral');

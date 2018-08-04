@@ -47,8 +47,6 @@ class GamesController < ApplicationController
         break
       end
     end
-    puts arr
-    puts "------------"
     # Add death word
     x = rand(2)+1
     selector = arr.each_index.select{|i| arr[i] == x}
@@ -58,8 +56,6 @@ class GamesController < ApplicationController
     arr.map! { |x| x == 0 ? "neutral-word" : x }
     arr.map! { |x| x == 1 ? "red-word" : x }
     arr.map! { |x| x == 2 ? "blue-word" : x }
-    puts arr
-    puts "------------"
     # choose words for cells
     loop do
       loop do
@@ -82,10 +78,9 @@ class GamesController < ApplicationController
         cells = cells.uniq
       end
     end
-
-    puts cells
     @cells = cells
     @arr = arr
-
+    @red = arr.each_index.select{|i| arr[i] == "red-word"}
+    @blue = arr.each_index.select{|i| arr[i] == "blue-word"}
     end
 end

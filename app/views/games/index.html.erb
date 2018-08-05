@@ -28,6 +28,7 @@
           </span>
         </div>
       <% end %>
+      <!-- @game.split(/([a-z]+\-+\word)/) -->
     </div>
     <div id="mode-toggle">
       <button id="player">Player</button>
@@ -151,6 +152,7 @@
   });
   $('body').on('click','.death-word',function(){
     $(this).removeClass('hidden-word');
+    $('.hidden-word').removeClass('hidden-word');
     if (redTurn == 1){
       $('#status').text("blue wins!");
       $('#status').addClass('blue-status-text');
